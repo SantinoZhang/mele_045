@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+app.title = '折柱混合';
+
+option = {
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            crossStyle: {
+                color: '#999'
+            }
+        }
+    },
+    toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    legend: {
+        data:['销售额','毛利额','进货额','进销差额','毛利率']
+    },
+    xAxis: [
+        {
+            type: 'category',
+            data: ['2018年11月','2018年12月','2019年1月','2019年2月'],
+            axisPointer: {
+                type: 'shadow'
+            }
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            name: '金额',
+            min: -200000,
+            max: 450000,
+            interval: 50000,
+            axisLabel: {
+                formatter: '{value} 元'
+            }
+        },
+        {
+            type: 'value',
+            name: '毛利率',
+            min: 0,
+            max: 30,
+            interval: 5,
+            axisLabel: {
+                formatter: '{value} %'
+            }
+        }
+    ],
+    series: [
+        {
+            name:'销售额',
+            type:'bar',
+            data:[151975.20, 303045.00,281764.30,191133.31]
+        },
+        {
+            name:'毛利额',
+            type:'bar',
+            data:[28168.47,56425.53,59904.37,43134.80]
+        },
+        {
+            name:'进货额',
+            type:'bar',
+            data:[174606.47,248899.32,455412.58,126615.58]
+        },
+        {
+            name:'进销差额',
+            type:'bar',
+            data:[-22631.27,54145.68,-173648.28,64517.73]
+        },
+        {
+            name:'毛利率',
+            type:'line',
+            yAxisIndex: 1,
+            data:[18.53,18.62,21.26,22.57]
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
